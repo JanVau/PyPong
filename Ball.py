@@ -1,41 +1,41 @@
+import pygame
+
 class Ball:
     RADIUS = 20
 
-    def __init__(self,x,y,vx,vy):
-        self.x = x
-        self.y = y
+    def __init__(self,screenVariables,vx,vy,paddles,score):
+        self.screen = screenVariables[0]
+        self.fgColor = screenVariables[1]
+        self.bgColor = screenVariables[2]
+        self.screenWidth = screenVariables[3]
+        self.screenHeight = screenVariables[4]
+        self.screenBorder = screenVariables[5]
+        self.x = screenVariables[3]-self.RADIUS-20
+        self.y = screenVariables[4]//2
         self.vx = vx
         self.vy = vy
-        self.RADIUS=RADIUS
-
-    def set_Radius(self,newRadius):
-        self.RADIUS = newRadius
-
-    def get_Radius(self):
-        return RADIUS
+        self.paddles = paddles
+        self.score = score
 
     def show(self,color):
-        global screen
-        pygame.draw.circle(screen,color,(self.x,self.y),self.RADIUS)
+        pygame.draw.circle(self.screen,color,(self.x,self.y),self.RADIUS)
 
     def update(self):
-        global bgColor,fgColor
-
         newX = self.x + self.vx
         newY = self.y + self.vy
 
-        if newX < BORDER+self.RADIUS:
-            score.add_point()
+        if newX < self.screenBorder+self.RADIUS:
+            #self.paddles[0].add_point()
             self.vx = -self.vx
-        elif newY < BORDER+self.RADIUS or newY > HEIGHT-BORDER-self.RADIUS:
+        elif newY < self.screenBorder+self.RADIUS or newY > self.screenHeight-self.screenBorder-self.RADIUS:
             self.vy = -self.vy
-        elif newX+Ball.RADIUS > WIDTH-Paddle.WIDTH and abs(newY-paddle.y) < Paddle.HEIGHT//2:
+        elif newX+self.RADIUS > self.screenWidth-self.paddles[0].WIDTH and abs(newY-self.paddles[0].y) < self.paddles[0].HEIGHT//2:
             self.vx = -self.vx
-        elif newX+Ball.RADIUS > WIDTH:
-            score.reset_point()
+        elif newX+self.RADIUS > self.screenWidth:
+            #self.paddles[0].reset_point()
             self.vx = -self.vx
         else:
-            self.show(bgColor)
+            self.show(self.bgColor)
             self.x += self.vx
             self.y += self.vy
-            self.show(fgColor)
+            self.show(self.fgColor)
