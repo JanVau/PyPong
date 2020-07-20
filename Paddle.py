@@ -18,7 +18,6 @@ class Paddle:
 
     def update(self,vy):
         newY = self.y+vy
-        print(newY)
         if newY-self.HEIGHT//2 > self.screenBorder and newY+self.HEIGHT//2 < self.screenHeight-self.screenBorder:
             self.show(self.bgColor)
             self.y = newY

@@ -78,20 +78,37 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            sys.exit()
+            sys.exit()                       
 
-    key = pygame.key.get_pressed()    
-    if key[pygame.K_DOWN]:
-        paddleSpeed1 = 7
-    elif key[pygame.K_UP]:
-        paddleSpeed1 = -7
-    elif key[pygame.K_w]:
-        paddleSpeed2 = 7
-    elif key[pygame.K_UP]:
-        paddleSpeed2 = -7
+    key1 = pygame.key.get_pressed()    
+    if key1[pygame.K_DOWN]:
+        paddleSpeed1 = 5
+    elif key1[pygame.K_UP]:
+        paddleSpeed1 = -5
+    elif key1[pygame.K_ESCAPE]:
+        pygame.quit()
+        sys.exit()
     else:
         paddleSpeed1 = 0
+
+    key2 = pygame.key.get_pressed()
+    if key2[pygame.K_s]:
+            paddleSpeed2 = 5
+    elif key2[pygame.K_w]:
+        paddleSpeed2 = -5
+    elif key2[pygame.K_ESCAPE]:
+        pygame.quit()
+        sys.exit()
+    else:
         paddleSpeed2 = 0
+
+    key3 = pygame.key.get_pressed()
+    if key3[pygame.KMOD_LALT and pygame.K_F4]:
+        pygame.quit()
+        sys.exit() 
+    else:
+        pass
+
     paddleSpeeds = [paddleSpeed1,paddleSpeed2]  
     redraw(paddleSpeeds)
     pygame.display.flip()
