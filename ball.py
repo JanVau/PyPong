@@ -25,7 +25,7 @@ class Ball:
         newY = self.y + self.vy
 
         if newX < 0+self.RADIUS:
-            #self.paddles[0].add_point()
+            self.score[0].add_point()
             self.vx = -self.vx
         elif newY < self.screenBorder+self.RADIUS or newY > self.screenHeight-self.screenBorder-self.RADIUS:
             self.vy = -self.vy
@@ -34,7 +34,7 @@ class Ball:
         elif newX-self.RADIUS < 0+self.paddles[1].WIDTH and abs(newY-self.paddles[1].y) < self.paddles[1].HEIGHT//2:
             self.vx = -self.vx
         elif newX+self.RADIUS > self.screenWidth:
-            #self.paddles[0].reset_point()
+            self.score[1].add_point()
             self.vx = -self.vx
         else:
             self.show(self.bgColor)
