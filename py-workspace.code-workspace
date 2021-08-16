@@ -5,6 +5,9 @@
         },
         {
             "path": "TaroBot"
+        },
+        {
+            "path": "PyRecord"
         }
     ],
     "settings": {
